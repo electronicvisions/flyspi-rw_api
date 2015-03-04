@@ -3,17 +3,24 @@
 //#include <iostream>
 
 namespace rw_api {
-
 	// forward declarations
 	template<typename Com, typename Channel> class Request;
+}
+
+
+namespace std {
+
+	// forward declarations
+	template<typename Com, typename Channel>
+	typename Com::BufferPtr begin(rw_api::Request<Com, Channel>& req);
 
 	template<typename Com, typename Channel>
-	inline
-	typename Com::BufferPtr begin(Request<Com, Channel>& req);
+	typename Com::BufferPtr end(rw_api::Request<Com, Channel>& req);
 
-	template<typename Com, typename Channel>
-	inline
-	typename Com::BufferPtr end(Request<Com, Channel>& req);
+}
+
+
+namespace rw_api {
 
 
 	/* XXX if the user is not storing the Request object returned by 
@@ -23,8 +30,8 @@ namespace rw_api {
 	 * to recognize the situation. */
 	template<typename Com, typename Channel>
 	class Request {
-		friend typename Com::BufferPtr begin<Com, Channel>(Request& req);
-		friend typename Com::BufferPtr end<Com, Channel>(Request& req);
+		friend typename Com::BufferPtr std::begin<Com, Channel>(Request& req);
+		friend typename Com::BufferPtr std::end<Com, Channel>(Request& req);
 
 		Com& com;
 		typename Com::BufferPtr buf;
@@ -32,16 +39,16 @@ namespace rw_api {
 		typename Com::RequestHandle handle;
 
 		public:
-		unsigned int const size;
+		unsigned int const length;
 
 		Request(Com& com,
 				typename Com::BufferPtr const& buf,
-				unsigned int const size,
+				unsigned int const length,
 				typename Com::RequestHandle& handle)
 			:	com(com),
 				buf(buf),
 				handle(std::move(handle)),
-				size(size)
+				length(length)
 		{
 			//std::cout << "Request constructor " << this << std::endl;
 		}
@@ -50,7 +57,7 @@ namespace rw_api {
 			:	com(tmp.com),
 				buf(tmp.buf),
 				handle(std::move(tmp.handle)),
-				size(tmp.size) {
+				length(tmp.length) {
 			tmp.buf = nullptr;
 			//std::cout << "Request move constructor " << this << std::endl;
 		}
@@ -70,10 +77,10 @@ namespace rw_api {
 				buf = tmp.buf;
 				channel = tmp.channel;
 				handle = std::move(tmp.handle);
-				const_cast<unsigned int&>(size) = tmp.size;
+				const_cast<unsigned int&>(length) = tmp.length;
 
 				tmp.buf = nullptr;
-				const_cast<unsigned int&>(tmp.size) = 0;
+				const_cast<unsigned int&>(tmp.length) = 0;
 			}
 
 			return *this;
@@ -105,20 +112,28 @@ namespace rw_api {
 		bool isGood() {
 			return channel.isGood(buf);
 		}
+
+		unsigned int size() const {
+			return length;
+		}
 	};
 
+
+}  /* namespace rw_api */
+
+
+namespace std {
+
 	template<typename Com, typename Channel>
-	inline
-	typename Com::BufferPtr begin(Request<Com, Channel>& req) {
+	typename Com::BufferPtr begin(rw_api::Request<Com, Channel>& req) {
 		return req.buf + req.channel.header_size;
 	}
 
 	template<typename Com, typename Channel>
-	inline
-	typename Com::BufferPtr end(Request<Com, Channel>& req) {
-		return req.buf + req.channel.header_size + req.size;
+	typename Com::BufferPtr end(rw_api::Request<Com, Channel>& req) {
+		return req.buf + req.channel.header_size + req.length;
 	}
 
-}  /* namespace rw_api */
+}
 
 // vim: noexpandtab ts=4 sw=4 softtabstop=0 nosmarttab:

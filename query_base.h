@@ -110,19 +110,24 @@ namespace rw_api {
 		}
 	};
 
+}  /* namespace rw_api */
+
+
+namespace std {
+
 	// STL adaptors
 	template<typename Com, typename Channel, typename Derived>
 	inline
-	typename Com::BufferPtr begin(QueryBase<Com, Channel, Derived>& q) {
+	typename Com::BufferPtr begin(rw_api::QueryBase<Com, Channel, Derived>& q) {
 		return q.buf + q.channel.header_size;
 	}
 
 	template<typename Com, typename Channel, typename Derived>
 	inline
-	typename Com::BufferPtr end(QueryBase<Com, Channel, Derived>& q) {
+	typename Com::BufferPtr end(rw_api::QueryBase<Com, Channel, Derived>& q) {
 		return q.buf + q.channel.header_size + q.counter;
 	}
 
-}  /* namespace rw_api */
+}
 
 // vim: noexpandtab ts=4 sw=4 softtabstop=0 nosmarttab:
