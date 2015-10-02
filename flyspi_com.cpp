@@ -57,11 +57,6 @@ namespace rw_api {
 				BufferPtr const& respBuffer,
 				unsigned int const respBufferSize) 
 	{
-		std::cout << (boost::format("Submitting transfers with query size: %d, resp size: %d\n")
-				% queryBufferSize % respBufferSize).str();
-		std::cout << (boost::format("[0x%08x 0x%08x 0x%08x 0x%08x 0x%08x...]")
-				% queryBuffer[0] % queryBuffer[1] % queryBuffer[2] % queryBuffer[3] % queryBuffer[4]).str() << std::endl;
-
 		//auto success = usb.bulktrans((unsigned char*)queryBuffer, 
 				//(unsigned char*)respBuffer,
 				//queryBufferSize * sizeof(BufferType),
