@@ -1,10 +1,13 @@
 #pragma once
 
 #include <memory>
-#include "usbcom.h"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
 #include <libusb.h>
+#pragma GCC diagnostic pop
 #include <rw_api/error_base.h>
 #include <rw_api/byte_order.h>
+#include <rw_api/usb_communication.h>
 
 namespace rw_api
 {
@@ -38,7 +41,7 @@ namespace rw_api
 		typedef BufferType* BufferPtr;
 
 
-		/* The BufferType is reinterpret_cast to an unsigned char* pointer in 
+		/* The BufferType is reinterpret_cast to an unsigned char* pointer in
 		 * the commit function. So it should not add any data members besides
 		 * one value member of the underlying type. */
 		static_assert(sizeof(uint32_t) == sizeof(BigEndianReorder<uint32_t>),
@@ -83,7 +86,8 @@ namespace rw_api
 
 		FlyspiCom();
 		FlyspiCom(std::string);
-		// XXX there does not seem to be a close() implementation in usbcom ?
+
+		~FlyspiCom();
 
 		// XXX locking functionality for multi-threading
 		inline Locator locate() const;
@@ -135,7 +139,8 @@ namespace rw_api
 		std::string  getSerial();
 
 		private:
-		usbcomm usb;
+		usb_communication::context usb_context;
+		usb_communication::device usb_device;
 	};
 
 }
