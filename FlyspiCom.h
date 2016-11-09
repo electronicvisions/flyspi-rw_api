@@ -1,10 +1,7 @@
 #pragma once
 
 #include <memory>
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wpedantic"
-#include <libusb.h>
-#pragma GCC diagnostic pop
+#include <libusb-1.0/libusb.h>
 #include <rw_api/error_base.h>
 #include <rw_api/byte_order.h>
 #include <rw_api/usb_communication.h>

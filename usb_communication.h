@@ -1,10 +1,6 @@
 #pragma once
 
-// ignore warning coming from libusb
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wpedantic"
-#include <libusb.h>
-#pragma GCC diagnostic pop
+#include <libusb-1.0/libusb.h>
 
 #include <string>
 #include <vector>
