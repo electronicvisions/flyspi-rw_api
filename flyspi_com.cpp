@@ -94,7 +94,7 @@ FlyspiCom::FlyspiCom()
 }
 
 FlyspiCom::RequestHandle FlyspiCom::commit(
-    Locator const& loc,
+    Locator const& /*loc*/,
     BufferPtr const& queryBuffer,
     unsigned int const queryBufferSize,
     BufferPtr const& respBuffer,
