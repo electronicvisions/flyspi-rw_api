@@ -107,7 +107,7 @@ namespace rw_api
 				resp_complete = false;
 			}
 
-			~RequestHandleInfo() {
+			~RequestHandleInfo() noexcept(false) {
 				//std::cout << "deleting request handle" << std::endl;
 
 				if( transfer != nullptr )
