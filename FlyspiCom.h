@@ -116,10 +116,16 @@ namespace rw_api
 				if( resp_transfer != nullptr )
 					libusb_free_transfer(resp_transfer);
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wterminate"
 				if( !complete || !resp_complete )
+					/* ECM(2017-12-06) That is bad code (even if it will work
+					 * if only this one throws and nothing else is happening w.r.t.
+					 * stack unwinding)... I do not care for now. */
 					throw LogicError(__PRETTY_FUNCTION__,
 							"request destroyed before completion");
 					//std::cerr << "request destroyed before completion" << std::endl;
+#pragma GCC diagnostic pop
 			}
 		};
 		// end DELME

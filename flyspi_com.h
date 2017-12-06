@@ -155,7 +155,7 @@ namespace rw_api {
 
 	FlyspiCom::Locator
 	FlyspiCom::locate() const {
-		Locator rv;
+		Locator rv{};
 		return rv;
 	}
 
