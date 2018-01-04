@@ -1,7 +1,5 @@
 #pragma once
 
-#include <functional>
-#include <cstdint>
 #include <endian.h>
 
 namespace rw_api {

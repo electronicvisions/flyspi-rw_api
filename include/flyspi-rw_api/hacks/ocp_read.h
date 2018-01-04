@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rw_api/hacks/ocp_pop_read_query.h>
+#include "flyspi-rw_api/hacks/ocp_pop_read_query.h"
 
 namespace rw_api {
 	namespace flyspi {

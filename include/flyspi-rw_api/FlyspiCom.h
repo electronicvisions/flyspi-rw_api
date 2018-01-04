@@ -2,9 +2,10 @@
 
 #include <memory>
 #include <libusb-1.0/libusb.h>
-#include <rw_api/error_base.h>
-#include <rw_api/byte_order.h>
-#include <rw_api/usb_communication.h>
+
+#include "flyspi-rw_api/error_base.h"
+#include "flyspi-rw_api/byte_order.h"
+#include "flyspi-rw_api/usb_communication.h"
 
 namespace rw_api
 {

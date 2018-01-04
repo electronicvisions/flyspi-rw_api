@@ -1,8 +1,8 @@
 #pragma once
 
-#include <rw_api/query_base.h>
-#include <rw_api/request.h>
-#include <rw_api/error_base.h>
+#include "flyspi-rw_api/query_base.h"
+#include "flyspi-rw_api/request.h"
+#include "flyspi-rw_api/error_base.h"
 
 namespace rw_api {
 

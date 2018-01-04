@@ -1,15 +1,16 @@
 #pragma once
 
-#include <rw_api/error_base.h>
-#include <rw_api/block_write_query.h>
-#include <rw_api/block_read_query.h>
-#include <rw_api/write_query.h>
-#include <rw_api/single_read_query.h>
-#include <rw_api/simple.h>
-#include <rw_api/FlyspiCom.h>
 #include <cstdint>
 #include <sstream>
 #include <iomanip>
+
+#include "flyspi-rw_api/error_base.h"
+#include "flyspi-rw_api/block_write_query.h"
+#include "flyspi-rw_api/block_read_query.h"
+#include "flyspi-rw_api/write_query.h"
+#include "flyspi-rw_api/single_read_query.h"
+#include "flyspi-rw_api/simple.h"
+#include "flyspi-rw_api/FlyspiCom.h"
 
 namespace rw_api {
 
@@ -259,6 +260,6 @@ namespace rw_api {
 
 }  /* namespace rw_api */
 
-#include <rw_api/hacks/ocp_read.h>
+#include "flyspi-rw_api/hacks/ocp_read.h"
 
 // vim: noexpandtab ts=4 sw=4 softtabstop=0 nosmarttab:

@@ -1,4 +1,4 @@
-#include "usb_communication.h"
+#include "flyspi-rw_api/usb_communication.h"
 
 #include <string>
 #include <vector>

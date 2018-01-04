@@ -1,5 +1,5 @@
-#include <rw_api/flyspi_com.h>
-#include "rw_api/usb_communication.h"
+#include "flyspi-rw_api/flyspi_com.h"
+#include "flyspi-rw_api/usb_communication.h"
 
 namespace rw_api {
 void usb_transfer_callback(libusb_transfer* trans);

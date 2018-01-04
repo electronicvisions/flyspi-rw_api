@@ -1,7 +1,5 @@
 #pragma once
 
-//#include <iostream>
-
 namespace rw_api {
 	// forward declarations
 	template<typename Com, typename Channel> class Request;

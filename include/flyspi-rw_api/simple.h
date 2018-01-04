@@ -1,7 +1,7 @@
 #pragma once
 
-#include <rw_api/single_write_query.h>
-#include <rw_api/single_read_query.h>
+#include "flyspi-rw_api/single_write_query.h"
+#include "flyspi-rw_api/single_read_query.h"
 
 namespace rw_api {
 
