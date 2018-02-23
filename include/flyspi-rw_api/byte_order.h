@@ -34,6 +34,7 @@ namespace rw_api {
 		T value;
 
 		public:
+		typedef T value_type;
 		BigEndianReorder()
 			:	value(0) {
 		}
